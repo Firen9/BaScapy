@@ -11,7 +11,7 @@ def fetch(entries):
       eingabe.append(entry[1].get())
      # print(entry[1].get())
 
-   ScapyCaller.createPacket(eingabe)
+   ScapyCaller.createPacket(eingabe,fuzz)
 
 
 
@@ -33,9 +33,13 @@ if __name__ == '__main__':
    root.title("StartScreen")
    ents = makeform(root, fields)
    root.bind('<Return>', (lambda event, e=ents: fetch(e)))
+
+   fuzz = BooleanVar()
+   Checkbutton(root,text="Fuzzing", variable=fuzz).pack(side=LEFT)
+
    b1 = Button(root, text='Verbinden', command=(lambda e=ents: fetch(e)))
    b1.pack(side=LEFT, padx=5, pady=5)
 
    b2 = Button(root, text='Quit', command=root.quit)
-   b2.pack(side=LEFT, padx=5, pady=5)
+   b2.pack(side=LEFT, padx=6, pady=6)
    root.mainloop()
