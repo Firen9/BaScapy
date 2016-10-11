@@ -32,14 +32,9 @@ def createPacket(werte):
         packet.options = werte[8]
     if ip and port:
         antwort=sr1(packet)
-#Abfangen der Ausgabe von Show
-        capture = StringIO()
-        save_stdout = sys.stdout
-        sys.stdout = capture
-        antwort.show()
-        sys.stdout = save_stdout
-#ins fenster übertragen
-        answerWindow(capture.getvalue())
+        test = ausgabeAbfangen(antwort)
+        #An Fenster senden
+        answerWindow(test)
     else:
         print("IP oder Port eingeben")
 
@@ -50,6 +45,10 @@ def answerWindow(antwortPacket):
     msg.pack()
 
 
-def test():
-    hallo = "test"
-    return hallo
+def ausgabeAbfangen(packet):
+    capture = StringIO()
+    save_stdout = sys.stdout
+    sys.stdout = capture
+    packet.show()
+    sys.stdout = save_stdout
+    return capture.getvalue()
