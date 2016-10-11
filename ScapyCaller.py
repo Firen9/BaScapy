@@ -1,6 +1,9 @@
 from scapy.all import *
 import MyGui
 from Tkinter import *
+import sys
+from StringIO import StringIO
+from scapy.layers import inet
 
 def createPacket(werte):
     if not werte[0]:
@@ -29,8 +32,14 @@ def createPacket(werte):
         packet.options = werte[8]
     if ip and port:
         antwort=sr1(packet)
-
-        answerWindow(antwort)
+#Abfangen der Ausgabe von Show
+        capture = StringIO()
+        save_stdout = sys.stdout
+        sys.stdout = capture
+        antwort.show()
+        sys.stdout = save_stdout
+#ins fenster übertragen
+        answerWindow(capture.getvalue())
     else:
         print("IP oder Port eingeben")
 
@@ -43,20 +52,4 @@ def answerWindow(antwortPacket):
 
 def test():
     hallo = "test"
-    print(hallo)
-
-def darstellung(self):
-        """prints a summary of each packet with the packet's number
-prn:     function to apply to each packet instead of lambda x:x.summary()
-lfilter: truth function to apply to each packet to decide whether it will be displayed"""
-        prn = None
-        lfilter = None
-        for i in range(len(self.res)):
-            if lfilter is not None:
-                if not lfilter(self.res[i]):
-                    continue
-            print conf.color_theme.id(i,fmt="%04i")
-            if prn is None:
-                print self._elt2sum(self.res[i])
-            else:
-                print prn(self.res[i])
+    return hallo
