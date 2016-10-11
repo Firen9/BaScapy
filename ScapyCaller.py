@@ -27,20 +27,20 @@ def createPacket(werte,fuzzing):
     if werte[6]:
         packet.flags = int(werte[6])
     if werte[7]:
-        packet.urgptr = int(werte[7])
+        packet.window = int(werte[6])
     if werte[8]:
+        packet.urgptr = int(werte[7])
+    if werte[9]:
         packet.options = werte[8]
     if ip and port:
-       if not fuzzing:
-        antwort=sr1(packet)
-        test = ausgabeAbfangen(antwort)
-        #An Fenster senden
-        answerWindow(test)
-       else:
-           antwort = sr(fuzz(packet))
-           test = ausgabeAbfangen(antwort)
-           # An Fenster senden
-           answerWindow(test)
+        if not fuzzing:
+            antwort=sr1(packet)
+            test = ausgabeAbfangen(antwort)
+            #An Fenster senden
+            answerWindow(test)
+        else:
+            send(fuzz(packet),loop=1,count=int(werte[10]))
+
     else:
         print("IP oder Port eingeben")
 

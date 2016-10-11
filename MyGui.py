@@ -2,7 +2,7 @@ from Tkinter import *
 from scapy.all import IP,send,TCP
 import ScapyCaller
 
-fields = 'IP', 'DPort', 'SPort', 'ACK', 'dataofs', 'reserved', 'flags', 'window', 'urgptr', 'options','test'
+fields = 'IP', 'DPort', 'SPort', 'ACK', 'dataofs', 'reserved', 'flags', 'window', 'urgptr', 'options','Fuzzing Anzahl'
 
 def fetch(entries):
    eingabe=[]
@@ -11,7 +11,7 @@ def fetch(entries):
       eingabe.append(entry[1].get())
      # print(entry[1].get())
 
-   ScapyCaller.createPacket(eingabe,fuzz)
+   ScapyCaller.createPacket(eingabe,fuzz.get())
 
 
 
@@ -34,7 +34,7 @@ if __name__ == '__main__':
    ents = makeform(root, fields)
    root.bind('<Return>', (lambda event, e=ents: fetch(e)))
 
-   fuzz = BooleanVar()
+   fuzz=IntVar()
    Checkbutton(root,text="Fuzzing", variable=fuzz).pack(side=LEFT)
 
    b1 = Button(root, text='Verbinden', command=(lambda e=ents: fetch(e)))
