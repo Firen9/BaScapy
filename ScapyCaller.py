@@ -35,7 +35,7 @@ def createPaket(werte, fuzzing):
     if ip and port:
         if not fuzzing:
             answer=sr1(paket)
-            test = ausgabeAbfangen(answer)
+            test = catchingAnswer(answer)
             #An Fenster senden
             answerWindow(test)
         else:
@@ -51,7 +51,7 @@ def answerWindow(answerPaket):
     msg.pack()
 
 
-def ausgabeAbfangen(paket):
+def catchingAnswer(paket):
     capture = StringIO()
     save_stdout = sys.stdout
     sys.stdout = capture
