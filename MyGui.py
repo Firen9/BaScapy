@@ -11,7 +11,7 @@ def fetch(entries):
       eingabe.append(entry[1].get())
      # print(entry[1].get())
 
-   ScapyCaller.createPacket(eingabe,fuzz.get())
+   ScapyCaller.createPaket(eingabe, fuzz.get())
 
 
 
