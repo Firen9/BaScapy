@@ -30,13 +30,15 @@ def makeform(root, fields):
 
 def answerWindow(sendPaket,answerPaket):
     guitop = Toplevel()
+    Label(guitop,text="Gesendete Paket").grid(row=0,column=0)
+    Label(guitop, text="Empfanges Paket").grid(row=0,column=1)
     tSend=Text(guitop)
     tAnswer=Text(guitop)
     tSend.insert(END,sendPaket)
     tAnswer.insert(END,answerPaket)
 
-    tSend.pack(side=LEFT)
-    tAnswer.pack(side=RIGHT)
+    tSend.grid(row=1,column=0)
+    tAnswer.grid(row=1,column=1)
 
 
 if __name__ == '__main__':
