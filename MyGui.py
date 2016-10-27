@@ -30,10 +30,14 @@ def makeform(root, fields):
 
 def answerWindow(sendPaket,answerPaket):
     guitop = Toplevel()
-    sendmsg = Message(guitop, text=sendPaket)
-    answermsg = Message(guitop, text=answerPaket)
-    sendmsg.pack(side=LEFT)
-    answermsg.pack(side=RIGHT)
+    tSend=Text(guitop)
+    tAnswer=Text(guitop)
+    tSend.insert(END,sendPaket)
+    tAnswer.insert(END,answerPaket)
+
+    tSend.pack(side=LEFT)
+    tAnswer.pack(side=RIGHT)
+
 
 if __name__ == '__main__':
    root = Tk()
