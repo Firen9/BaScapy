@@ -34,21 +34,18 @@ def createPaket(werte, fuzzing):
         paket.options = werte[8]
     if ip and port:
         if not fuzzing:
+            sendtest=catchingAnswer(paket)
             answer=sr1(paket)
-            test = catchingAnswer(answer)
+            answertest = catchingAnswer(answer)
             #An Fenster senden
-            answerWindow(test)
+            MyGui.answerWindow(sendtest,answertest)
         else:
             send(fuzz(paket),loop=1,count=int(werte[10]))
 
     else:
         print("IP oder Port eingeben")
 
-def answerWindow(answerPaket):
-    answer = MyGui.Toplevel()
-    msg = Message(answer, text=answerPaket)
 
-    msg.pack()
 
 
 def catchingAnswer(paket):

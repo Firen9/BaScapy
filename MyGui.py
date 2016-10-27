@@ -28,6 +28,13 @@ def makeform(root, fields):
       entries.append((field, ent))
    return entries
 
+def answerWindow(sendPaket,answerPaket):
+    guitop = Toplevel()
+    sendmsg = Message(guitop, text=sendPaket)
+    answermsg = Message(guitop, text=answerPaket)
+    sendmsg.pack(side=LEFT)
+    answermsg.pack(side=RIGHT)
+
 if __name__ == '__main__':
    root = Tk()
    root.title("StartScreen")
