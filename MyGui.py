@@ -30,6 +30,7 @@ def makeform(root, fields):
 
 def answerWindow(sendPaket,answerPaket):
     guitop = Toplevel()
+    guitop.title("Gesendetes und empfangenes Paket")
     Label(guitop,text="Gesendete Paket").grid(row=0,column=0)
     Label(guitop, text="Empfanges Paket").grid(row=0,column=1)
     tSend=Text(guitop)

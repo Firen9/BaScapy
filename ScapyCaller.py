@@ -5,6 +5,7 @@ import sys
 from StringIO import StringIO
 from scapy.layers import inet
 
+
 def createPaket(werte, fuzzing):
     if not werte[0]:
         print("Geben Sie bitte eine IP ein")
@@ -34,18 +35,28 @@ def createPaket(werte, fuzzing):
         paket.options = werte[8]
     if ip and port:
         if not fuzzing:
-            sendtest=catchingAnswer(paket)
-            answer=sr1(paket)
+            sendtest = catchingAnswer(paket)
+            answer = sr1(paket)
             answertest = catchingAnswer(answer)
-            #An Fenster senden
-            MyGui.answerWindow(sendtest,answertest)
+            # An Fenster senden
+            MyGui.answerWindow(sendtest, answertest)
         else:
-            send(fuzz(paket),loop=1,count=int(werte[10]))
+         sfuzzPakets = []
+         afuzzPakets = []
+         i=0
+         while i < int(werte[10]):
+            fuzzing = fuzz(paket)
+            sFuzz = catchingAnswer(fuzzing)
+         #fuzzing = catchingAnswer(send(fuzz(paket), loop=1, count=int(werte[10])))
+            sfuzzPakets.append(sFuzz)
+            answerFuzz=sr(fuzzing)
+            aFuzz=catchingAnswer(answerFuzz)
+            afuzzPakets.append(aFuzz)
+            i+=1
+         MyGui.answerWindow(sfuzzPakets[0], afuzzPakets[0])
 
     else:
         print("IP oder Port eingeben")
-
-
 
 
 def catchingAnswer(paket):
