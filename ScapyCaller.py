@@ -57,7 +57,7 @@ def createPaket(werte, fuzzing):
                 else:
                     afuzzPakets.append("Keine Antwort")
                 i += 1
-            MyGui.answerWindow(sfuzzPakets[0], afuzzPakets[0])
+            MyGui.fuzzingWindow(sfuzzPakets, afuzzPakets)
 
     else:
         print("IP oder Port eingeben")

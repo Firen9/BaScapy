@@ -41,6 +41,37 @@ def answerWindow(sendPaket,answerPaket):
     tSend.grid(row=1,column=0)
     tAnswer.grid(row=1,column=1)
 
+def fuzzingWindow(sFuzz,aFuzz):
+    guiFuzz = Toplevel()
+    guiFuzz.title("Fuzzing Pakete")
+    guiFuzz.geometry('120x125')
+
+    frameListbox = Frame(master=guiFuzz)
+    frameListbox.place(x=5,y=5,width=110, height=80)
+
+    frameRelease = Frame(master=guiFuzz)
+    frameRelease.place(x=5,y=90,width=110, height=30)
+
+    listboxName = Listbox(master=guiFuzz, selectmode='browse')
+    i=0
+    asPaket=[]
+    while i < len(aFuzz):
+        listboxName.insert('end',aFuzz[i])
+        i+=1
+
+    listboxName.place(x=5,y=5,width=80, height=70)
+    listboxName.bin('<<ListboxSelect>>')
+
+    listSelect = listboxName.curselection()
+    listSelect = listSelect[0]
+
+    labelText=Label(master=frameRelease)
+    labelText.config(text='Gesendet:\n' + sFuzz[0] + '\n' + 'Empfangen:\n' + aFuzz[0])
+    labelText.place(x=5,y=5,width=100,height=20)
+
+
+
+
 
 if __name__ == '__main__':
    root = Tk()
