@@ -41,19 +41,23 @@ def createPaket(werte, fuzzing):
             # An Fenster senden
             MyGui.answerWindow(sendtest, answertest)
         else:
-         sfuzzPakets = []
-         afuzzPakets = []
-         i=0
-         while i < int(werte[10]):
-            fuzzing = fuzz(paket)
-            sFuzz = catchingAnswer(fuzzing)
-         #fuzzing = catchingAnswer(send(fuzz(paket), loop=1, count=int(werte[10])))
-            sfuzzPakets.append(sFuzz)
-            answerFuzz=sr(fuzzing)
-            aFuzz=catchingAnswer(answerFuzz)
-            afuzzPakets.append(aFuzz)
-            i+=1
-         MyGui.answerWindow(sfuzzPakets[0], afuzzPakets[0])
+            sfuzzPakets = []
+            afuzzPakets = []
+            i = 0
+            while i < int(werte[10]):
+                fuzzing = fuzz(paket)
+                sFuzz = catchingAnswer(fuzzing)
+                sfuzzPakets.append(sFuzz)
+                #send(fuzzing)
+                answerFuzz = sr1(fuzzing, inter=0.1, retry=0, timeout=0.1)
+                #answerFuzz=1
+                if isinstance(answerFuzz,basestring):
+                    aFuzz = catchingAnswer(answerFuzz)
+                    afuzzPakets.append(aFuzz)
+                else:
+                    afuzzPakets.append("Keine Antwort")
+                i += 1
+            MyGui.answerWindow(sfuzzPakets[0], afuzzPakets[0])
 
     else:
         print("IP oder Port eingeben")
