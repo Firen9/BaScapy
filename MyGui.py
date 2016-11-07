@@ -80,7 +80,7 @@ def fuzzingWindow(sFuzz,aFuzz):
     listboxName.place(x=5,y=5,width=190, height=290)
     listboxName.bind("<Double-Button-1>", onClick)
 
-    #Scroolbar
+    #Scroolbar test
     yScroll = Scrollbar(master=guiFuzz, orient='vertical')
     yScroll.place(x=200,y=5, width=15,height=290)
     listboxName.config(yscrollcommand=yScroll.set)
