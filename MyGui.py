@@ -65,9 +65,6 @@ def fuzzingWindow(sFuzz,aFuzz):
     frameListbox = Frame(master=guiFuzz)
     frameListbox.place(x=1,y=1,width=190, height=290)
 
-    frameRelease = Frame(master=guiFuzz)
-    frameRelease.place(x=1,y=1,width=190, height=290)
-
     listboxName = Listbox(master=guiFuzz, selectmode='browse')
 
     i=0
