@@ -41,33 +41,50 @@ def answerWindow(sendPaket,answerPaket):
     tSend.grid(row=1,column=0)
     tAnswer.grid(row=1,column=1)
 
+def onClick(event):
+    # Feldauswahl
+    widget=event.widget
+    listSelect = widget.curselection()
+    itemSelect = listSelect[0]
+    paketSelect = widget.get(itemSelect)
+
+    guiFuzz = Toplevel()
+    guiFuzz.title("Fuzzing Pakete")
+    guiFuzz.geometry('300x500')
+    frameRelease = Frame(master=guiFuzz)
+    frameRelease.place(x=5, y=5, width=300, height=500)
+    labelText = Label(master=frameRelease)
+    labelText.place(x=1, y=1, width=200, height=500)
+    labelText.config(text=paketSelect)
+
 def fuzzingWindow(sFuzz,aFuzz):
     guiFuzz = Toplevel()
     guiFuzz.title("Fuzzing Pakete")
-    guiFuzz.geometry('120x125')
+    guiFuzz.geometry('230x300')
 
     frameListbox = Frame(master=guiFuzz)
-    frameListbox.place(x=5,y=5,width=110, height=80)
+    frameListbox.place(x=1,y=1,width=190, height=290)
 
     frameRelease = Frame(master=guiFuzz)
-    frameRelease.place(x=5,y=90,width=110, height=30)
+    frameRelease.place(x=1,y=1,width=190, height=290)
 
     listboxName = Listbox(master=guiFuzz, selectmode='browse')
+
     i=0
     asPaket=[]
     while i < len(aFuzz):
-        listboxName.insert('end',aFuzz[i])
+        asPaket.append('Empfangen:\n' + aFuzz[i] + '\n'+'Gesendet:\n' + sFuzz[i] + '\n')
+        listboxName.insert('end',asPaket[i])
         i+=1
 
-    listboxName.place(x=5,y=5,width=80, height=70)
-    listboxName.bin('<<ListboxSelect>>')
+    listboxName.place(x=5,y=5,width=190, height=290)
+    listboxName.bind("<Double-Button-1>", onClick)
 
-    listSelect = listboxName.curselection()
-    listSelect = listSelect[0]
-
-    labelText=Label(master=frameRelease)
-    labelText.config(text='Gesendet:\n' + sFuzz[0] + '\n' + 'Empfangen:\n' + aFuzz[0])
-    labelText.place(x=5,y=5,width=100,height=20)
+    #Scroolbar
+    yScroll = Scrollbar(master=guiFuzz, orient='vertical')
+    yScroll.place(x=200,y=5, width=15,height=290)
+    listboxName.config(yscrollcommand=yScroll.set)
+    yScroll.config(command=listboxName.yview)
 
 
 
