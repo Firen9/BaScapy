@@ -79,7 +79,7 @@ def onClick(event):
 def fuzzingWindow(sFuzz,aFuzz):
     guiFuzz = Toplevel()
     guiFuzz.title("Fuzzing Pakete")
-    guiFuzz.geometry('230x300')
+    guiFuzz.geometry('230x320')
 
     frameListbox = Frame(master=guiFuzz)
     frameListbox.place(x=1,y=1,width=190, height=290)
@@ -102,7 +102,10 @@ def fuzzingWindow(sFuzz,aFuzz):
     listboxName.config(yscrollcommand=yScroll.set)
     yScroll.config(command=listboxName.yview)
 
-
+    xScroll = Scrollbar(master=guiFuzz,orient='horizontal')
+    xScroll.place(x=5,y=300,width=190, height=15)
+    listboxName.config(xscrollcommand=xScroll.set)
+    xScroll.config(command=listboxName.xview)
 
 
 
