@@ -31,15 +31,27 @@ def makeform(root, fields):
 def answerWindow(sendPaket,answerPaket):
     guitop = Toplevel()
     guitop.title("Gesendetes und empfangenes Paket")
-    Label(guitop,text="Gesendete Paket").grid(row=0,column=0)
-    Label(guitop, text="Empfanges Paket").grid(row=0,column=1)
+    guitop.geometry('570x480')
+    Label(guitop,text="Gesendete Paket").place(x=1,y=1)
+    Label(guitop, text="Empfanges Paket").place(x=285,y=1)
     tSend=Text(guitop)
     tAnswer=Text(guitop)
     tSend.insert(END,sendPaket)
     tAnswer.insert(END,answerPaket)
 
-    tSend.grid(row=1,column=0)
-    tAnswer.grid(row=1,column=1)
+    tSend.place(x=1,y=20,width=250, height=450)
+    tAnswer.place(x=285,y=20, width=250, height=450)
+
+    # Scroolbar
+    sScroll = Scrollbar(master=guitop, orient='vertical')
+    sScroll.place(x=260, y=20, width=15, height=450)
+    tSend.config(yscrollcommand=sScroll.set)
+    sScroll.config(command=tSend.yview)
+
+    aScroll = Scrollbar(master=guitop, orient='vertical')
+    aScroll.place(x=545, y=20, width=15, height=450)
+    tAnswer.config(yscrollcommand=aScroll.set)
+    aScroll.config(command=tAnswer.yview)
 
 def onClick(event):
     # Feldauswahl
@@ -53,9 +65,16 @@ def onClick(event):
     guiFuzz.geometry('300x500')
     frameRelease = Frame(master=guiFuzz)
     frameRelease.place(x=5, y=5, width=300, height=500)
-    labelText = Label(master=frameRelease)
-    labelText.place(x=1, y=1, width=200, height=500)
-    labelText.config(text=paketSelect)
+
+    tFuzzing=Text(frameRelease)
+    tFuzzing.insert(END,paketSelect)
+    tFuzzing.place(x=1, y=1, width=250, height=450)
+
+    #Scroolbar
+    yScroll = Scrollbar(master=guiFuzz, orient='vertical')
+    yScroll.place(x=260, y=5, width=15,height=450)
+    tFuzzing.config(yscrollcommand=yScroll.set)
+    yScroll.config(command=tFuzzing.yview)
 
 def fuzzingWindow(sFuzz,aFuzz):
     guiFuzz = Toplevel()
@@ -77,7 +96,7 @@ def fuzzingWindow(sFuzz,aFuzz):
     listboxName.place(x=5,y=5,width=190, height=290)
     listboxName.bind("<Double-Button-1>", onClick)
 
-    #Scroolbar test
+    #Scroolbar
     yScroll = Scrollbar(master=guiFuzz, orient='vertical')
     yScroll.place(x=200,y=5, width=15,height=290)
     listboxName.config(yscrollcommand=yScroll.set)
