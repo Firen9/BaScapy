@@ -51,11 +51,14 @@ def createPaket(werte, fuzzing):
                 #send(fuzzing)
                 answerFuzz = sr1(fuzzing, inter=0.1, retry=0, timeout=0.1)
                 #answerFuzz=1
-                if isinstance(answerFuzz,basestring):
+                if answerFuzz is None:
+                    afuzzPakets.append("Keine Antwort")
+                else:
+                #if isinstance(answerFuzz,basestring):
                     aFuzz = catchingAnswer(answerFuzz)
                     afuzzPakets.append(aFuzz)
-                else:
-                    afuzzPakets.append("Keine Antwort")
+                #else:
+                   # afuzzPakets.append("Keine Antwort")
                 i += 1
             MyGui.fuzzingWindow(sfuzzPakets, afuzzPakets)
 
