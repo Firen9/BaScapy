@@ -11,13 +11,13 @@ if os.name == "nt":
 
 setup(
     name='BaScapy',
-    version='',
+    version='0.2',
     packages=['scapy/scapy/','scapy/scapy/arch', 'scapy/scapy/arch/windows', 'scapy/scapy/layers','scapy/scapy/asn1','scapy/scapy/tools','scapy/scapy/modules', 'scapy/scapy/crypto', 'scapy/scapy/contrib','python-tk'],
     data_files = [('share/man/man1', ["scapy/doc/scapy.1.gz"])],
     scripts = SCRIPTS,
     url='',
     license='',
-    author='',
+    author='Sascha Böhm',
     author_email='',
     description=''
 )
