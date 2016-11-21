@@ -3,19 +3,11 @@ from distutils.core import setup
 setup(
     name='BaScapy',
     version='',
-    packages=['scapy-2.3.2.build.lib.linux-x86_64-2.7.scapy', 'scapy-2.3.2.build.lib.linux-x86_64-2.7.scapy.arch',
-              'scapy-2.3.2.build.lib.linux-x86_64-2.7.scapy.arch.windows',
-              'scapy-2.3.2.build.lib.linux-x86_64-2.7.scapy.asn1', 'scapy-2.3.2.build.lib.linux-x86_64-2.7.scapy.tools',
-              'scapy-2.3.2.build.lib.linux-x86_64-2.7.scapy.crypto',
-              'scapy-2.3.2.build.lib.linux-x86_64-2.7.scapy.layers',
-              'scapy-2.3.2.build.lib.linux-x86_64-2.7.scapy.contrib',
-              'scapy-2.3.2.build.lib.linux-x86_64-2.7.scapy.modules', 'scapy-2.3.2.scapy', 'scapy-2.3.2.scapy.arch',
-              'scapy-2.3.2.scapy.arch.windows', 'scapy-2.3.2.scapy.asn1', 'scapy-2.3.2.scapy.tools',
-              'scapy-2.3.2.scapy.crypto', 'scapy-2.3.2.scapy.layers', 'scapy-2.3.2.scapy.contrib',
-              'scapy-2.3.2.scapy.modules'],
+    packages=['scapy/scapy/','scapy/scapy/arch', 'scapy/scapy/arch/windows', 'scapy/scapy/layers','scapy/scapy/asn1','scapy/scapy/tools','scapy/scapy/modules', 'scapy/scapy/crypto', 'scapy/scapy/contrib','python-tk'],
+    data_files = [('share/man/man1', ["scapy/doc/scapy.1.gz"])],
     url='',
     license='',
-    author='Sascha Böhm',
+    author='',
     author_email='',
     description=''
 )
