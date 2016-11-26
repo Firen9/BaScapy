@@ -6,33 +6,33 @@ from StringIO import StringIO
 from scapy.layers import inet
 
 
-def createPaket(werte, fuzzing):
-    if not werte[0]:
+def createPaket(values, fuzzing):
+    if not values[0]:
         print("Geben Sie bitte eine IP ein")
     else:
-        paket = IP(dst=werte[0]) / TCP()
+        paket = IP(dst=values[0]) / TCP()
         ip = True
-    if not werte[1]:
+    if not values[1]:
         print("Gib Port ein")
     else:
-        paket.dport = int(werte[1])
+        paket.dport = int(values[1])
         port = True
-    if werte[2]:
-        paket.sport = int(werte[2])
-    if werte[3]:
-        paket.ack = int(werte[3])
-    if werte[4]:
-        paket.dataofs = int(werte[4])
-    if werte[5]:
-        paket.reserved = int(werte[5])
-    if werte[6]:
-        paket.flags = int(werte[6])
-    if werte[7]:
-        paket.window = int(werte[6])
-    if werte[8]:
-        paket.urgptr = int(werte[7])
-    if werte[9]:
-        paket.options = werte[8]
+    if values[2]:
+        paket.sport = int(values[2])
+    if values[3]:
+        paket.ack = int(values[3])
+    if values[4]:
+        paket.dataofs = int(values[4])
+    if values[5]:
+        paket.reserved = int(values[5])
+    if values[6]:
+        paket.flags = int(values[6])
+    if values[7]:
+        paket.window = int(values[6])
+    if values[8]:
+        paket.urgptr = int(values[7])
+    if values[9]:
+        paket.options = values[8]
     if ip and port:
         if not fuzzing:
             sendtest = catchingAnswer(paket)
@@ -44,7 +44,7 @@ def createPaket(werte, fuzzing):
             sfuzzPakets = []
             afuzzPakets = []
             i = 0
-            while i < int(werte[10]):
+            while i < int(values[10]):
                 fuzzing = fuzz(paket)
                 sFuzz = catchingAnswer(fuzzing)
                 sfuzzPakets.append(sFuzz)
