@@ -5,13 +5,13 @@ import ScapyCaller
 fields = 'IP', 'DPort', 'SPort', 'ACK', 'dataofs', 'reserved', 'flags', 'window', 'urgptr', 'options','Fuzzing Anzahl'
 
 def fetch(entries):
-   eingabe=[]
+   input=[]
 
    for entry in entries:
-      eingabe.append(entry[1].get())
+      input.append(entry[1].get())
      # print(entry[1].get())
 
-   ScapyCaller.createPaket(eingabe, fuzz.get())
+   ScapyCaller.createPaket(input, fuzz.get())
 
 
 
